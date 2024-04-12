@@ -32,6 +32,7 @@ function Cards() {
     getCountries();
   }, []);
 
+  // Modal funkcijos
   const handleOpenModal = (country) => {
     setSelectedCountry(country);
     setIsModalOpen(true);

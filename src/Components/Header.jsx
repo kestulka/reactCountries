@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Flex, Button, Input, InputGroup } from "@chakra-ui/react";
 
 const Header = ({ countries }) => {
+  // TODO: kol kas sis kodas zaidimu aikstele, (printinamas array konsoleje)
   const [selectedRegion, setSelectedRegion] = useState(null);
 
   const filterCountriesByRegion = (countries, selectedRegion) => {
@@ -40,7 +41,12 @@ const Header = ({ countries }) => {
         >
           Asia
         </Button>
-        <Button colorScheme="purple" mr={4} mt={4}>
+        <Button
+          onClick={() => handleRegionFilter("Europe")}
+          colorScheme="purple"
+          mr={4}
+          mt={4}
+        >
           Europe
         </Button>
         <Button colorScheme="green" mr={4} mt={4}>

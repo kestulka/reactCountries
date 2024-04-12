@@ -12,8 +12,9 @@ import {
 } from "@chakra-ui/react";
 
 const MoreInfoModal = ({ isOpen, onClose, country }) => {
-  if (!country) return null;
+  if (!country) return null; // ! BUTINAS LINE, kitaip nerenderins
 
+  //TODO lines 17-29: reikalingas istraukti propercius is gilesniu sluoksniu, budas kopijuotas, bus koreguojamas
   const currencies = Object.values(country.currencies).map(
     (currency) => currency.name,
   );
