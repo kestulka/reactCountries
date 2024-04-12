@@ -22,7 +22,7 @@ const Header = ({ countries }) => {
   };
 
   return (
-    <Flex position="fixed" w="100%" zIndex="1" justifyContent="center">
+    <Flex position="fixed" w="100%" color="white" justifyContent="center">
       <div>
         <Button
           onClick={() => handleRegionFilter(null)}
@@ -66,7 +66,6 @@ const Header = ({ countries }) => {
             border="1px"
             borderColor="white"
             mt={4}
-            mb={8}
           />
         </InputGroup>
       </div>
