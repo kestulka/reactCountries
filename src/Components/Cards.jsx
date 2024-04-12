@@ -17,9 +17,12 @@ import {
 } from "@chakra-ui/react";
 
 import getAllCountries from "../Services/api";
+import MoreInfoModal from "./MoreInfoModal";
 
 function Cards() {
   const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const getCountries = async () => {
@@ -28,6 +31,16 @@ function Cards() {
     };
     getCountries();
   }, []);
+
+  const handleOpenModal = (country) => {
+    setSelectedCountry(country);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCountry(null);
+  };
 
   return (
     <>
@@ -59,7 +72,11 @@ function Cards() {
                 <Divider />
                 <CardFooter alignItems="center" justifyContent="center">
                   <ButtonGroup>
-                    <Button variant="solid" colorScheme="purple">
+                    <Button
+                      variant="solid"
+                      colorScheme="purple"
+                      onClick={() => handleOpenModal(country)}
+                    >
                       More info
                     </Button>
                   </ButtonGroup>
@@ -72,6 +89,11 @@ function Cards() {
           )}
         </Flex>
       </div>
+      <MoreInfoModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        country={selectedCountry}
+      />
     </>
   );
 }

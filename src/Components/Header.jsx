@@ -1,20 +1,43 @@
 import React, { useState } from "react";
 import { Flex, Button, Input, InputGroup } from "@chakra-ui/react";
 
-const Header = () => {
-  const [searchValue, setSearchValue] = useState("");
+const Header = ({ countries }) => {
+  const [selectedRegion, setSelectedRegion] = useState(null);
 
-  const handleSearchChange = (event) => {
-    setSearchValue(event.target.value);
+  const filterCountriesByRegion = (countries, selectedRegion) => {
+    if (!selectedRegion) {
+      return;
+    }
+    return countries.filter((country) => country.region === selectedRegion);
+  };
+
+  const filterAndUpdate = (region) => {
+    const filteredCountries = filterCountriesByRegion(countries, region);
+    console.log(filteredCountries);
+  };
+
+  const handleRegionFilter = (region) => {
+    setSelectedRegion(region);
+    filterAndUpdate(region);
   };
 
   return (
     <Flex position="fixed" w="100%" zIndex="1" justifyContent="center">
       <div>
-        <Button colorScheme="teal" mr={4} mt={4}>
+        <Button
+          onClick={() => handleRegionFilter(null)}
+          colorScheme="teal"
+          mr={4}
+          mt={4}
+        >
           All
         </Button>
-        <Button colorScheme="pink" mr={4} mt={4}>
+        <Button
+          onClick={() => handleRegionFilter("Asia")}
+          colorScheme="pink"
+          mr={4}
+          mt={4}
+        >
           Asia
         </Button>
         <Button colorScheme="purple" mr={4} mt={4}>
@@ -38,8 +61,6 @@ const Header = () => {
         <InputGroup>
           <Input
             placeholder="Search..."
-            value={searchValue}
-            onChange={handleSearchChange}
             size="10px"
             width="15em"
             border="1px"

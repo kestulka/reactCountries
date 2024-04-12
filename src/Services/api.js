@@ -6,6 +6,7 @@ const getAllCountries = async () => {
   try {
     const response = await axios.get(API_URL);
     if (response.data !== undefined) {
+      console.log(response.data);
       return response.data;
     }
   } catch (error) {
