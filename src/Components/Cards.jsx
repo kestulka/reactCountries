@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -12,25 +11,14 @@ import {
   ButtonGroup,
   Button,
   Divider,
-  Center,
   Flex,
 } from "@chakra-ui/react";
 
-import getAllCountries from "../Services/api";
 import MoreInfoModal from "./MoreInfoModal";
 
-function Cards() {
-  const [countries, setCountries] = useState([]);
+function Cards({ countries }) {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    const getCountries = async () => {
-      const data = await getAllCountries();
-      setCountries(data);
-    };
-    getCountries();
-  }, []);
 
   // Modal funkcijos
   const handleOpenModal = (country) => {
